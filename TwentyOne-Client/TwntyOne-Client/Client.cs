@@ -32,7 +32,7 @@ namespace TwentyOne_Client
                 client = new TcpClient(address, port);
                 stream = client.GetStream();
                 Structures.Response response = SendCommand("connect", username);
-                if (response.data != "connected")
+                if (response.status != 200)
                 {
                     stream.Close();
                     client.Close();

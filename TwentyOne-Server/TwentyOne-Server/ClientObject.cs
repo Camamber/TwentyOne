@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace TwentyOne_Server
 {
-    
-
     class ClientObject
     {
         TcpClient client;
@@ -58,7 +56,7 @@ namespace TwentyOne_Server
                             player = new Player(message.id, message.data, lobby.StartMoney);
                             lobby.AddPlayer(player);
                             Console.WriteLine(player.Name + " connected!");
-                            response.data = "connected";
+                            response.data = JsonConvert.SerializeObject(lobby);
                         }
                         else
                         {

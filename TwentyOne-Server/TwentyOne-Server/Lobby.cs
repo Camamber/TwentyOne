@@ -9,17 +9,22 @@ namespace TwentyOne_Server
     class Lobby
     {
         int startMoney;
+        int minBet;
         bool ready;
+        long leaderId;
         List<Player> players;
-        public Lobby(int startMoney, int maxPlayer = 3)
+        public Lobby(int startMoney, int minBet, int maxPlayer = 3)
         {
             this.players = new List<Player>(maxPlayer);
             this.startMoney = startMoney;
+            this.minBet = minBet;
             this.ready = false;
         }
 
         public int AddPlayer(Player player)
         {
+            if (players.Capacity == 0)
+                leaderId = player.Id;
             players.Add(player);
             return players.Count;
         }
@@ -28,6 +33,8 @@ namespace TwentyOne_Server
         {
             int index = players.FindIndex(p => p.Id == id);
             players.RemoveAt(index);
+            if (leaderId == id && players.Count > 0)
+                leaderId = players[0].Id;
             return players.Count;
         }
 
@@ -48,6 +55,11 @@ namespace TwentyOne_Server
         public int StartMoney
         {
             get { return startMoney; }
+        }
+
+        public int MinBet
+        {
+            get { return minBet; }
         }
     }
 }

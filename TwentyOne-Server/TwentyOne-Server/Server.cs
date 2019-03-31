@@ -24,7 +24,7 @@ namespace TwentyOne_Server
             this.port = port;
             listener = new TcpListener(IPAddress.Parse(ip), port);
             clients = new List<TcpClient>();
-            lobby = new Lobby(100);
+            lobby = new Lobby(100, 5);
         }
 
         public void Start()
