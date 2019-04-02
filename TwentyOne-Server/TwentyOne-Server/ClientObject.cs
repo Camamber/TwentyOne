@@ -68,6 +68,10 @@ namespace TwentyOne_Server
                         Console.WriteLine("{0}: {1}", player.Name, message.command);
                         switch (message.command)
                         {
+                            case "info":
+
+                                response.data = "";
+                                break;
                             case "ready":
                                 player.Ready = true;
                                 break;
