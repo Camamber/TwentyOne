@@ -13,23 +13,17 @@ namespace TwentyOne_Client
     {
         TcpClient client;
         private NetworkStream stream;
-        private int port;
-        string address;
-        Player player;
 
-        public Client(string address, int port, Player player)
+        public Client()
         {
-            this.address = address;
-            this.port = port;
-            this.player = player;
         }
-        public Structures.Response Connect( )
+        public Structures.Response Connect(string address, int port, string name)
         {
             try
             {
                 client = new TcpClient(address, port);
                 stream = client.GetStream();
-                Structures.Response response = SendCommand("connect", player.Name);
+                Structures.Response response = SendCommand("connect", name);
                 if (response.status != 200)
                 {
                     stream.Close();
@@ -55,7 +49,7 @@ namespace TwentyOne_Client
 
         public Structures.Response SendCommand(string command, string data)
         {
-            Structures.Request request = new Structures.Request { id = player.Id, command = command, data = data };      
+            Structures.Request request = new Structures.Request {command = command, data = data };      
             try
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(request));

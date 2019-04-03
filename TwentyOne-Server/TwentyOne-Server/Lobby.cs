@@ -11,17 +11,15 @@ namespace TwentyOne_Server
         Random rnd = new Random();
         int startMoney;
         int minBet;
-        bool ready;
-        long leaderId;
-        List<Player> players;
+        Player player;
         List<Card> deck;
-        public Lobby(int startMoney, int minBet, int maxPlayer = 3)
+        public Lobby(int startMoney, int minBet, Player player)
         {
-            this.players = new List<Player>(maxPlayer);
+            this.player = player;
             this.deck = FillDeck();
             this.startMoney = startMoney;
             this.minBet = minBet;
-            this.ready = false;
+            this.player.Balance = startMoney;
         }
 
         public List<Card> FillDeck()
@@ -36,48 +34,24 @@ namespace TwentyOne_Server
             }
             return tmp;
         }
-
-        public int AddPlayer(Player player)
-        {
-            if (players.Capacity == 0)
-                leaderId = player.Id;
-            players.Add(player);
-            return players.Count;
-        }
-
-        public int RemovePlayer(long id)
-        {
-            int index = players.FindIndex(p => p.Id == id);
-            players.RemoveAt(index);
-            if (leaderId == id && players.Count > 0)
-                leaderId = players[0].Id;
-            return players.Count;
-        }
-
+    
         public bool Start()
         {
-            ready = true;
-            foreach(Player player in players)
-            {
-                if (!player.Ready)
-                {
-                    ready = false;
-                    return ready;
-                }
-            }
-
-           foreach (Player player in players)
-                GiveCard(player);
-            players[0].Active = true;
-                       
-            return ready;
+           GiveCard(player);                    
+           return true;
         }
 
-        void GiveCard(Player player)
+        public void GiveCard(Player player)
         {
             int cardIndex = rnd.Next(0, deck.Count);
             player.AddToHand(deck.ElementAt(cardIndex));
             deck.RemoveAt(cardIndex);
+        }
+
+        public void Close()
+        {
+            player = null;
+            deck.Clear();
         }
 
         public int StartMoney
@@ -88,6 +62,11 @@ namespace TwentyOne_Server
         public int MinBet
         {
             get { return minBet; }
+        }
+
+        public Player GetPlayer
+        {
+            get { return player; }
         }
     }
 }

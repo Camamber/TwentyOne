@@ -10,7 +10,6 @@ namespace TwentyOne_Server
     {
         public class Request
         {
-            public long id;
             public string command;
             public string data;
         }

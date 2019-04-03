@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,11 @@ namespace TwentyOne_Server
     class ClientObject
     {
         TcpClient client;
-        Player player;
         Lobby lobby;
 
-        public ClientObject(TcpClient tcpClient, Lobby lobby)
+        public ClientObject(TcpClient tcpClient)
         {
             client = tcpClient;
-            this.lobby = lobby;
         }
 
         public void Process()
@@ -48,14 +47,13 @@ namespace TwentyOne_Server
 
                     Structures.Request message = JsonConvert.DeserializeObject<Structures.Request>(builder.ToString());
                     
-                    if (player == null)
+                    if (lobby == null)
                     {
-                        Console.WriteLine("{0}: {1}", message.id, message.command);
+                        Console.WriteLine("{0}: {1}", message.data, message.command);
                         if (message.command.Equals("connect"))
                         {
-                            player = new Player(message.id, message.data, lobby.StartMoney);
-                            lobby.AddPlayer(player);
-                            Console.WriteLine(player.Name + " connected!");
+                            lobby = new Lobby(100, 5, new Player(message.data));
+                            Console.WriteLine(lobby.GetPlayer.Name + " connected!");
                             response.data = JsonConvert.SerializeObject(lobby);
                         }
                         else
@@ -65,21 +63,24 @@ namespace TwentyOne_Server
                     }
                     else
                     {
-                        Console.WriteLine("{0}: {1}", player.Name, message.command);
+                        Console.WriteLine("{0}: {1}", lobby.GetPlayer.Name, message.command);
                         switch (message.command)
                         {
-                            case "info":
-
-                                response.data = "";
+                            case "info":                                
+                                response.data = JsonConvert.SerializeObject(lobby);
+                                break;                          
+                            case "start":               
+                                response.status = lobby.Start() ? 200 : 403;                             
                                 break;
-                            case "ready":
-                                player.Ready = true;
+                            case "bet":
+                              
                                 break;
-                            case "unready":
-                                player.Ready = false;
+                            case "up":
+                                lobby.GiveCard(lobby.GetPlayer);                                
                                 break;
-                            case "start":
-                                response.status = lobby.Start()?200:403;
+                            case "end":
+                                loop = false;
+                                response.data = "Goodbye";
                                 break;
                             case "exit":
                                 loop = false;
@@ -106,10 +107,10 @@ namespace TwentyOne_Server
                     stream.Close();
                 if (client != null)
                     client.Close();
-                if (player != null)
+                if (lobby != null)
                 {
-                    Console.WriteLine(player.Name  + " disconnected!");
-                    lobby.RemovePlayer(player.Id);
+                    Console.WriteLine(lobby.GetPlayer.Name  + " disconnected!");
+                    lobby.Close();                 
                 }
             }
         }

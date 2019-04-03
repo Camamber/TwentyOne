@@ -8,19 +8,15 @@ namespace TwentyOne_Server
 {
     class Player
     {
-        long id;
         string name;
         int balance;
-        bool ready;
-        bool active;
+        int bet;
         List<Card> hand;
-        public Player(long id, string name, int balance)
+
+        public Player(string name)
         {
-            this.id = id;
+
             this.name = name;
-            this.balance = balance;
-            this.ready = false;
-            this.active = false;
             this.hand = new List<Card>();
         }
 
@@ -42,26 +38,20 @@ namespace TwentyOne_Server
             }
         }
 
-        public long Id
-        {
-            get { return this.id; }
-        }
-
         public string Name
         {
             get { return this.name; }
         }
 
-        public bool Ready
+        public int Balance
         {
-            get { return this.ready; }
-            set { this.ready = value; }
+            get { return this.balance; }
+            set { this.balance = value; }
         }
-
-        public bool Active
+        public int Bet
         {
-            get { return this.active; }
-            set { this.active = value; }
+            get { return this.bet; }
+            set { this.bet = value; }
         }
     }
 }

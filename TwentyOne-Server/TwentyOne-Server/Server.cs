@@ -15,8 +15,6 @@ namespace TwentyOne_Server
         int port;
         static TcpListener listener;
         List<TcpClient> clients;
-        public event EventHandler StatusChanged;
-        Lobby lobby;
 
         public Server(string ip, int port)
         {
@@ -24,7 +22,6 @@ namespace TwentyOne_Server
             this.port = port;
             listener = new TcpListener(IPAddress.Parse(ip), port);
             clients = new List<TcpClient>();
-            lobby = new Lobby(100, 5);
         }
 
         public void Start()
@@ -37,7 +34,7 @@ namespace TwentyOne_Server
                 {
                     TcpClient client = listener.AcceptTcpClient();
                     clients.Add(client);
-                    ClientObject clientObject = new ClientObject(client, lobby);
+                    ClientObject clientObject = new ClientObject(client);
 
                     Thread clientThread = new Thread(new ThreadStart(clientObject.Process));
                     clientThread.Start();
@@ -71,12 +68,6 @@ namespace TwentyOne_Server
                 }
             }
             clients.Clear();
-        }
-
-        protected virtual void OnStatusChanged(EventArgs e)
-        {
-            if (StatusChanged != null)
-                StatusChanged(this, e);
-        }
+        }      
     }
 }
