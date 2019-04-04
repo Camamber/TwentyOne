@@ -27,18 +27,19 @@ namespace TwentyOne_Server
             List<Card> tmp = new List<Card>();
             for (int i = 0; i < 9; i++)
             {
-                tmp.Add(new Card(Suit.Club, i + i < 6 ? 6 : -4));
-                tmp.Add(new Card(Suit.Diamond, i + i < 6 ? 6 : -4));
-                tmp.Add(new Card(Suit.Heart, i + i < 6 ? 6 : -4));
-                tmp.Add(new Card(Suit.Spade, i + i < 6 ? 6 : -4));
+                tmp.Add(new Card(Suit.Club, i + (i < 6 ? 6 : -4)));
+                tmp.Add(new Card(Suit.Diamond, i + (i < 6 ? 6 : -4)));
+                tmp.Add(new Card(Suit.Heart, i + (i < 6 ? 6 : -4)));
+                tmp.Add(new Card(Suit.Spade, i + (i < 6 ? 6 : -4)));
             }
             return tmp;
         }
-    
+
         public bool Start()
         {
-           GiveCard(player);                    
-           return true;
+            GiveCard(player);
+            player.State = State.Bet;
+            return true;
         }
 
         public void GiveCard(Player player)

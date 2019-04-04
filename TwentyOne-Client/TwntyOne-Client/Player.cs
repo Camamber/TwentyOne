@@ -20,12 +20,12 @@ namespace TwentyOne_Client
         {
             this.name = name;          
         }
+
         public void SetClient(Client client)
         {
             this.client = client;
         }
-
-      
+     
         public void Bet(int bet)
         {
             client.SendCommand("bet", bet.ToString());
@@ -33,12 +33,12 @@ namespace TwentyOne_Client
 
         public void More()
         {
-
+            client.SendCommand("up", "");
         }
 
-        public void Done()
+        public void Enough()
         {
-
+            client.SendCommand("enough", "");
         }
 
         public string Name

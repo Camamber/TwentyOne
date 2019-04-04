@@ -21,25 +21,27 @@ namespace TwentyOne_Client
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            lobby = new Lobby(new Player("Котя"));
-            richTextBox1.Text += lobby.Connect("127.0.0.1", 8888)+"\n";
-
-            numericUpDown1.Value = lobby.MinBet;
-            label4.Text = lobby.Player.Balance.ToString();           
+                     
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            lobby.Disconnect();
+            if(lobby!=null)
+                lobby.Disconnect();
         }
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
+            lobby = new Lobby(new Player(tb_username.Text));
+            richTextBox1.Text += lobby.Connect(tb_IP.Text, 8888) + "\n";
+            numericUpDown1.Value = lobby.MinBet;
+            label4.Text = lobby.Player.Balance.ToString();
+
             bool started = lobby.Start();
             panel1.Visible = !started;
             panel3.Enabled = started;
-            //timer1.Start();
+            if(started)
+                timer1.Start();
 
         }
 
@@ -53,6 +55,16 @@ namespace TwentyOne_Client
         {
             lobby.Player.Bet((int)numericUpDown1.Value);
             bnt_Bet.Enabled = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            lobby.Player.More();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            lobby.Player.Enough();
         }
     }
 }

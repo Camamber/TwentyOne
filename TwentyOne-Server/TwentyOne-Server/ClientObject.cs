@@ -73,14 +73,28 @@ namespace TwentyOne_Server
                                 response.status = lobby.Start() ? 200 : 403;                             
                                 break;
                             case "bet":
-                              
+                                int tmp;
+                                if (int.TryParse(message.data, out tmp) && tmp <= lobby.GetPlayer.Balance)
+                                {
+                                    lobby.GetPlayer.Bet = tmp;
+                                    lobby.GetPlayer.State = State.Play;
+                                }
+                                else
+                                    response.status = 401;
                                 break;
                             case "up":
-                                lobby.GiveCard(lobby.GetPlayer);                                
+                                lobby.GiveCard(lobby.GetPlayer);
+                                if (lobby.GetPlayer.Score == 21)
+                                {
+                                    lobby.GetPlayer.State = State.Win;
+                                }
+                                if(lobby.GetPlayer.Score > 21)
+                                {
+                                    lobby.GetPlayer.State = State.Lose;
+                                }                
                                 break;
-                            case "end":
-                                loop = false;
-                                response.data = "Goodbye";
+                            case "enough":
+                                lobby.GetPlayer.State = State.Enough;
                                 break;
                             case "exit":
                                 loop = false;

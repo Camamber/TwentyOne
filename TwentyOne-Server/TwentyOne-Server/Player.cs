@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace TwentyOne_Server
 {
+    enum State { Bet, Play, Enough, Win, Lose}
     class Player
     {
         string name;
         int balance;
         int bet;
+        State state;
         List<Card> hand;
 
         public Player(string name)
@@ -43,6 +45,12 @@ namespace TwentyOne_Server
             get { return this.name; }
         }
 
+        public State State
+        {
+            get { return state; }
+            set { state = value; }
+        }
+
         public int Balance
         {
             get { return this.balance; }
@@ -51,7 +59,10 @@ namespace TwentyOne_Server
         public int Bet
         {
             get { return this.bet; }
-            set { this.bet = value; }
+            set {
+                this.balance -= value;
+                this.bet = value;
+            }
         }
     }
 }

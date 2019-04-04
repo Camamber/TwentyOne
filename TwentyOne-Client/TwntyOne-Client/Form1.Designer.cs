@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tb_Port = new System.Windows.Forms.TextBox();
+            this.tb_IP = new System.Windows.Forms.TextBox();
+            this.lbl_port = new System.Windows.Forms.Label();
+            this.lbl_ip = new System.Windows.Forms.Label();
+            this.lbl_username = new System.Windows.Forms.Label();
+            this.tb_username = new System.Windows.Forms.TextBox();
             this.btn_Start = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,12 +48,6 @@
             this.bnt_Bet = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lbl_username = new System.Windows.Forms.Label();
-            this.lbl_ip = new System.Windows.Forms.Label();
-            this.lbl_port = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -55,31 +55,77 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Location = new System.Drawing.Point(1, 448);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(644, 73);
+            this.richTextBox1.Size = new System.Drawing.Size(644, 91);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.tb_Port);
+            this.panel1.Controls.Add(this.tb_IP);
             this.panel1.Controls.Add(this.lbl_port);
             this.panel1.Controls.Add(this.lbl_ip);
             this.panel1.Controls.Add(this.lbl_username);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.tb_username);
             this.panel1.Controls.Add(this.btn_Start);
-            this.panel1.Location = new System.Drawing.Point(192, 112);
+            this.panel1.Location = new System.Drawing.Point(192, 125);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(260, 173);
             this.panel1.TabIndex = 2;
             // 
+            // tb_Port
+            // 
+            this.tb_Port.Location = new System.Drawing.Point(182, 36);
+            this.tb_Port.Name = "tb_Port";
+            this.tb_Port.Size = new System.Drawing.Size(36, 20);
+            this.tb_Port.TabIndex = 9;
+            // 
+            // tb_IP
+            // 
+            this.tb_IP.Location = new System.Drawing.Point(39, 36);
+            this.tb_IP.Name = "tb_IP";
+            this.tb_IP.Size = new System.Drawing.Size(100, 20);
+            this.tb_IP.TabIndex = 8;
+            // 
+            // lbl_port
+            // 
+            this.lbl_port.AutoSize = true;
+            this.lbl_port.Location = new System.Drawing.Point(147, 39);
+            this.lbl_port.Name = "lbl_port";
+            this.lbl_port.Size = new System.Drawing.Size(29, 13);
+            this.lbl_port.TabIndex = 7;
+            this.lbl_port.Text = "Port:";
+            // 
+            // lbl_ip
+            // 
+            this.lbl_ip.AutoSize = true;
+            this.lbl_ip.Location = new System.Drawing.Point(13, 39);
+            this.lbl_ip.Name = "lbl_ip";
+            this.lbl_ip.Size = new System.Drawing.Size(20, 13);
+            this.lbl_ip.TabIndex = 6;
+            this.lbl_ip.Text = "IP:";
+            // 
+            // lbl_username
+            // 
+            this.lbl_username.AutoSize = true;
+            this.lbl_username.Location = new System.Drawing.Point(13, 89);
+            this.lbl_username.Name = "lbl_username";
+            this.lbl_username.Size = new System.Drawing.Size(58, 13);
+            this.lbl_username.TabIndex = 5;
+            this.lbl_username.Text = "Username:";
+            // 
+            // tb_username
+            // 
+            this.tb_username.Location = new System.Drawing.Point(77, 86);
+            this.tb_username.Name = "tb_username";
+            this.tb_username.Size = new System.Drawing.Size(126, 20);
+            this.tb_username.TabIndex = 4;
+            // 
             // btn_Start
             // 
-            this.btn_Start.Enabled = false;
             this.btn_Start.Location = new System.Drawing.Point(91, 131);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(75, 23);
@@ -99,9 +145,9 @@
             this.panel3.Controls.Add(this.bnt_Bet);
             this.panel3.Controls.Add(this.numericUpDown1);
             this.panel3.Enabled = false;
-            this.panel3.Location = new System.Drawing.Point(66, 30);
+            this.panel3.Location = new System.Drawing.Point(22, 23);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(513, 337);
+            this.panel3.Size = new System.Drawing.Size(593, 388);
             this.panel3.TabIndex = 3;
             // 
             // label4
@@ -125,7 +171,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(253, 307);
+            this.label2.Location = new System.Drawing.Point(319, 364);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 5;
@@ -134,7 +180,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(209, 307);
+            this.label1.Location = new System.Drawing.Point(275, 364);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 4;
@@ -142,25 +188,27 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(340, 302);
+            this.button3.Location = new System.Drawing.Point(397, 359);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(44, 23);
             this.button3.TabIndex = 3;
             this.button3.Text = "Done";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(294, 302);
+            this.button2.Location = new System.Drawing.Point(351, 359);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 23);
             this.button2.TabIndex = 2;
             this.button2.Text = "More";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // bnt_Bet
             // 
-            this.bnt_Bet.Location = new System.Drawing.Point(91, 302);
+            this.bnt_Bet.Location = new System.Drawing.Point(200, 359);
             this.bnt_Bet.Name = "bnt_Bet";
             this.bnt_Bet.Size = new System.Drawing.Size(47, 23);
             this.bnt_Bet.TabIndex = 1;
@@ -170,7 +218,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(144, 305);
+            this.numericUpDown1.Location = new System.Drawing.Point(151, 362);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(34, 20);
             this.numericUpDown1.TabIndex = 0;
@@ -185,59 +233,11 @@
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(77, 86);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(126, 20);
-            this.textBox1.TabIndex = 4;
-            // 
-            // lbl_username
-            // 
-            this.lbl_username.AutoSize = true;
-            this.lbl_username.Location = new System.Drawing.Point(13, 89);
-            this.lbl_username.Name = "lbl_username";
-            this.lbl_username.Size = new System.Drawing.Size(58, 13);
-            this.lbl_username.TabIndex = 5;
-            this.lbl_username.Text = "Username:";
-            // 
-            // lbl_ip
-            // 
-            this.lbl_ip.AutoSize = true;
-            this.lbl_ip.Location = new System.Drawing.Point(13, 39);
-            this.lbl_ip.Name = "lbl_ip";
-            this.lbl_ip.Size = new System.Drawing.Size(20, 13);
-            this.lbl_ip.TabIndex = 6;
-            this.lbl_ip.Text = "IP:";
-            // 
-            // lbl_port
-            // 
-            this.lbl_port.AutoSize = true;
-            this.lbl_port.Location = new System.Drawing.Point(147, 39);
-            this.lbl_port.Name = "lbl_port";
-            this.lbl_port.Size = new System.Drawing.Size(29, 13);
-            this.lbl_port.TabIndex = 7;
-            this.lbl_port.Text = "Port:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(39, 36);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 8;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(182, 36);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(36, 20);
-            this.textBox3.TabIndex = 9;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 396);
+            this.ClientSize = new System.Drawing.Size(644, 423);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
@@ -269,12 +269,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb_Port;
+        private System.Windows.Forms.TextBox tb_IP;
         private System.Windows.Forms.Label lbl_port;
         private System.Windows.Forms.Label lbl_ip;
         private System.Windows.Forms.Label lbl_username;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_username;
     }
 }
 

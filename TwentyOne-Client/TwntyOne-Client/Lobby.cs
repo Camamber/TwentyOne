@@ -30,6 +30,7 @@ namespace TwentyOne_Client
                 dynamic lobby = JValue.Parse(response.data);
                 startMoney = lobby.StartMoney;
                 minBet = lobby.MinBet;
+                player.SetClient(client);
             }
 
             return string.Format("({0}) {1}", response.status, response.data);
