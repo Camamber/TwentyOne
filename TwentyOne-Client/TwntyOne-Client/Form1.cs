@@ -5,9 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TwentyOne_Client.Properties;
 
 namespace TwentyOne_Client
 {
@@ -51,8 +53,9 @@ namespace TwentyOne_Client
 
         private PictureBox NewCard(PictureBox pb, string img,string name,int i)
         {
-            
-            return new PictureBox { Name = name, Image = Image.FromFile("assets\\"+img), BackColor = pb.BackColor, SizeMode = pb.SizeMode, Size = pb.Size, Location = new Point(pb.Location.X+(15*i), pb.Location.Y)  };
+            ResourceManager rm = Resources.ResourceManager;
+            Image myImage = (Image)rm.GetObject(img);
+            return new PictureBox { Name = name, Image = myImage, BackColor = pb.BackColor, SizeMode = pb.SizeMode, Size = pb.Size, Location = new Point(pb.Location.X+(15*i), pb.Location.Y)  };
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -62,7 +65,7 @@ namespace TwentyOne_Client
             {
                 if (!table.Controls.ContainsKey("p_card" + 1 + i))
                 {
-                    string imgName = "" + lobby.Player.Hand[i].Value + "_of_" + lobby.Player.Hand[i].Suit+".png";
+                    string imgName = "_" + lobby.Player.Hand[i].Value + "_of_" + lobby.Player.Hand[i].Suit;
                     PictureBox pb = NewCard(p_card, imgName,"p_card" + 1 + i, i);                  
                     panel_Player.Controls.Add(pb);
                     pb.BringToFront();
@@ -73,7 +76,7 @@ namespace TwentyOne_Client
             {
                 if (!table.Controls.ContainsKey("b_card" + 1 + i))
                 {
-                    string imgName = "" + lobby.Banker.Hand[i].Value + "_of_" + lobby.Banker.Hand[i].Suit + ".png";
+                    string imgName = "_" + lobby.Banker.Hand[i].Value + "_of_" + lobby.Banker.Hand[i].Suit;
                     PictureBox pb = NewCard(b_card, imgName, "b_card" + 1 + i, -i);
                     panel_Banker.Controls.Add(pb);
                     pb.BringToFront();
