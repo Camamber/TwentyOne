@@ -53,7 +53,7 @@ namespace TwentyOne_Server
                         if (message.command.Equals("connect"))
                         {
                             lobby = new Lobby(100, 5, new Player(message.data));
-                            Console.WriteLine(lobby.GetPlayer.Name + " connected!");
+                            Console.WriteLine(lobby.Player.Name + " connected!");
                             response.data = JsonConvert.SerializeObject(lobby);
                         }
                         else
@@ -63,7 +63,7 @@ namespace TwentyOne_Server
                     }
                     else
                     {
-                        Console.WriteLine("{0}: {1}", lobby.GetPlayer.Name, message.command);
+                        Console.WriteLine("{0}: {1}", lobby.Player.Name, message.command);
                         switch (message.command)
                         {
                             case "info":                                
@@ -74,27 +74,31 @@ namespace TwentyOne_Server
                                 break;
                             case "bet":
                                 int tmp;
-                                if (int.TryParse(message.data, out tmp) && tmp <= lobby.GetPlayer.Balance)
+                                if (int.TryParse(message.data, out tmp) && tmp <= lobby.Player.Balance)
                                 {
-                                    lobby.GetPlayer.Bet = tmp;
-                                    lobby.GetPlayer.State = State.Play;
+                                    lobby.Player.Bet = tmp;
+                                    lobby.Player.State = State.Play;
                                 }
                                 else
                                     response.status = 401;
                                 break;
                             case "up":
-                                lobby.GiveCard(lobby.GetPlayer);
-                                if (lobby.GetPlayer.Score == 21)
+                                lobby.GiveCard(lobby.Player);
+                                if (lobby.Player.Score == 21)
                                 {
-                                    lobby.GetPlayer.State = State.Win;
+                                    lobby.Player.State = State.Win;
                                 }
-                                if(lobby.GetPlayer.Score > 21)
+                                if(lobby.Player.Score > 21)
                                 {
-                                    lobby.GetPlayer.State = State.Lose;
+                                    lobby.Player.State = State.Lose;
                                 }                
                                 break;
                             case "enough":
-                                lobby.GetPlayer.State = State.Enough;
+                                lobby.Player.State = State.Enough;
+                                lobby.BankerPlay();
+                                break;
+                            case "continue":
+                                response.status = lobby.Start() ? 200 : 403;
                                 break;
                             case "exit":
                                 loop = false;
@@ -123,7 +127,7 @@ namespace TwentyOne_Server
                     client.Close();
                 if (lobby != null)
                 {
-                    Console.WriteLine(lobby.GetPlayer.Name  + " disconnected!");
+                    Console.WriteLine(lobby.Player.Name  + " disconnected!");
                     lobby.Close();                 
                 }
             }

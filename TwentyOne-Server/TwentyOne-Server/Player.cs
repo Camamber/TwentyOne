@@ -27,6 +27,11 @@ namespace TwentyOne_Server
             hand.Add(card);
         }
 
+        public void ClearHand()
+        {
+            hand.Clear();
+        }
+
         public int Score
         {
             get
@@ -63,6 +68,11 @@ namespace TwentyOne_Server
                 this.balance -= value;
                 this.bet = value;
             }
+        }
+
+        public List<Card> Hand
+        {
+            get { return this.hand; }
         }
     }
 }

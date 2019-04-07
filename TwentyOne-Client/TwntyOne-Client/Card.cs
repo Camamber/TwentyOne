@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TwentyOne_Server
+namespace TwentyOne_Client
 {
     enum Suit { hearts, diamonds, clubs, spades };
     class Card
@@ -20,10 +20,12 @@ namespace TwentyOne_Server
         public int Value
         {
             get { return value; }
+            set { this.value = value; }
         }
         public Suit Suit
         {
             get { return suit; }
+            set { this.suit = value; }
         }
     }
 }

@@ -14,11 +14,13 @@ namespace TwentyOne_Client
         int minBet;
         Client client;
         Player player;
+        Player banker;
 
         public Lobby(Player player)
         {    
             client = new Client();
             this.player = player;
+            this.banker = new Player("banker");
 
         }
         public string Connect(string ip, int port)
@@ -48,13 +50,22 @@ namespace TwentyOne_Client
             return response.status == 200;
         }
 
+        public bool Continue()
+        {
+            Structures.Response response = client.SendCommand("continue", "");
+            return response.status == 200;
+        }
+
         public string Update()
         {
             Structures.Response response = client.SendCommand("info", "");
+            Lobby tmp = JsonConvert.DeserializeObject<Lobby>(response.data);
+            minBet = tmp.MinBet;
+            startMoney = tmp.StartMoney;
 
-            dynamic json = JObject.Parse(response.data);
-            minBet = json.MinBet;
-            startMoney = json.StartMoney;
+            tmp.player.SetClient(client);
+            player = tmp.player;
+            banker = tmp.banker;
             return response.data;//response.status == 200;
         }
 
@@ -73,6 +84,13 @@ namespace TwentyOne_Client
         public Player Player
         {
             get { return player; }
+            set { player = value; }
+        }
+
+        public Player Banker
+        {
+            get { return banker; }
+            set { banker = value; }
         }
     }
 }
