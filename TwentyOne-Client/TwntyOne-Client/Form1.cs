@@ -130,6 +130,7 @@ namespace TwentyOne_Client
         private void button1_Click(object sender, EventArgs e)
         {
             bet = 0;
+            lbl_Bet.Text = this.bet.ToString();
             panel_Player.Controls.Clear();
             panel_Banker.Controls.Clear();
             bool continued = lobby.Continue();

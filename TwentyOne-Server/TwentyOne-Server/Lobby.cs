@@ -56,6 +56,11 @@ namespace TwentyOne_Server
 
         public void GiveCard(Player player)
         {
+            if (deck.Count < 2)
+            {
+                deck.Clear();
+                FillDeck();
+            }
             int cardIndex = rnd.Next(0, deck.Count);
             player.AddToHand(deck.ElementAt(cardIndex));
             deck.RemoveAt(cardIndex);
@@ -78,6 +83,7 @@ namespace TwentyOne_Server
                 timer.Change(Timeout.Infinite, Timeout.Infinite);
                 if(banker.Score > 21 || banker.Score < player.Score)
                 {
+                    player.Balance += player.Bet * 2;
                     player.State = State.Win;
                     banker.State = State.Lose;
                 }

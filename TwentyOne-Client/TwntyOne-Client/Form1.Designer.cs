@@ -40,11 +40,13 @@
             this.tb_username = new System.Windows.Forms.TextBox();
             this.btn_Start = new System.Windows.Forms.Button();
             this.table = new System.Windows.Forms.Panel();
-            this.btn_BetClear = new System.Windows.Forms.Button();
             this.lbl_banker = new System.Windows.Forms.Label();
+            this.panel_Banker = new System.Windows.Forms.Panel();
             this.b_card = new System.Windows.Forms.PictureBox();
             this.lbl_Score = new System.Windows.Forms.Label();
+            this.panel_Player = new System.Windows.Forms.Panel();
             this.p_card = new System.Windows.Forms.PictureBox();
+            this.btn_BetClear = new System.Windows.Forms.Button();
             this.btn_Bet1 = new System.Windows.Forms.Button();
             this.btn_Bet25 = new System.Windows.Forms.Button();
             this.btn_Bet20 = new System.Windows.Forms.Button();
@@ -59,15 +61,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btn_Continue = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.panel_Player = new System.Windows.Forms.Panel();
-            this.panel_Banker = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.table.SuspendLayout();
+            this.panel_Banker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.b_card)).BeginInit();
+            this.panel_Player.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p_card)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel_Player.SuspendLayout();
-            this.panel_Banker.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -177,20 +177,6 @@
             this.table.Size = new System.Drawing.Size(755, 435);
             this.table.TabIndex = 3;
             // 
-            // btn_BetClear
-            // 
-            this.btn_BetClear.BackColor = System.Drawing.Color.Transparent;
-            this.btn_BetClear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_BetClear.BackgroundImage")));
-            this.btn_BetClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_BetClear.FlatAppearance.BorderSize = 0;
-            this.btn_BetClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_BetClear.Location = new System.Drawing.Point(266, 349);
-            this.btn_BetClear.Name = "btn_BetClear";
-            this.btn_BetClear.Size = new System.Drawing.Size(30, 30);
-            this.btn_BetClear.TabIndex = 16;
-            this.btn_BetClear.UseVisualStyleBackColor = false;
-            this.btn_BetClear.Click += new System.EventHandler(this.btn_BetClear_Click);
-            // 
             // lbl_banker
             // 
             this.lbl_banker.BackColor = System.Drawing.Color.Black;
@@ -202,6 +188,15 @@
             this.lbl_banker.TabIndex = 14;
             this.lbl_banker.Text = "0";
             this.lbl_banker.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel_Banker
+            // 
+            this.panel_Banker.BackColor = System.Drawing.Color.Transparent;
+            this.panel_Banker.Controls.Add(this.b_card);
+            this.panel_Banker.Location = new System.Drawing.Point(255, 13);
+            this.panel_Banker.Name = "panel_Banker";
+            this.panel_Banker.Size = new System.Drawing.Size(249, 72);
+            this.panel_Banker.TabIndex = 18;
             // 
             // b_card
             // 
@@ -228,6 +223,15 @@
             this.lbl_Score.Text = "0";
             this.lbl_Score.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel_Player
+            // 
+            this.panel_Player.BackColor = System.Drawing.Color.Transparent;
+            this.panel_Player.Controls.Add(this.p_card);
+            this.panel_Player.Location = new System.Drawing.Point(280, 208);
+            this.panel_Player.Name = "panel_Player";
+            this.panel_Player.Size = new System.Drawing.Size(249, 72);
+            this.panel_Player.TabIndex = 17;
+            // 
             // p_card
             // 
             this.p_card.BackColor = System.Drawing.Color.White;
@@ -240,6 +244,20 @@
             this.p_card.TabIndex = 13;
             this.p_card.TabStop = false;
             this.p_card.Visible = false;
+            // 
+            // btn_BetClear
+            // 
+            this.btn_BetClear.BackColor = System.Drawing.Color.Transparent;
+            this.btn_BetClear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_BetClear.BackgroundImage")));
+            this.btn_BetClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_BetClear.FlatAppearance.BorderSize = 0;
+            this.btn_BetClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_BetClear.Location = new System.Drawing.Point(266, 349);
+            this.btn_BetClear.Name = "btn_BetClear";
+            this.btn_BetClear.Size = new System.Drawing.Size(30, 30);
+            this.btn_BetClear.TabIndex = 16;
+            this.btn_BetClear.UseVisualStyleBackColor = false;
+            this.btn_BetClear.Click += new System.EventHandler(this.btn_BetClear_Click);
             // 
             // btn_Bet1
             // 
@@ -363,7 +381,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 5000;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panel2
@@ -406,24 +424,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // panel_Player
-            // 
-            this.panel_Player.BackColor = System.Drawing.Color.Transparent;
-            this.panel_Player.Controls.Add(this.p_card);
-            this.panel_Player.Location = new System.Drawing.Point(280, 208);
-            this.panel_Player.Name = "panel_Player";
-            this.panel_Player.Size = new System.Drawing.Size(249, 72);
-            this.panel_Player.TabIndex = 17;
-            // 
-            // panel_Banker
-            // 
-            this.panel_Banker.BackColor = System.Drawing.Color.Transparent;
-            this.panel_Banker.Controls.Add(this.b_card);
-            this.panel_Banker.Location = new System.Drawing.Point(255, 13);
-            this.panel_Banker.Name = "panel_Banker";
-            this.panel_Banker.Size = new System.Drawing.Size(249, 72);
-            this.panel_Banker.TabIndex = 18;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,11 +441,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.table.ResumeLayout(false);
+            this.panel_Banker.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.b_card)).EndInit();
+            this.panel_Player.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p_card)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel_Player.ResumeLayout(false);
-            this.panel_Banker.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
